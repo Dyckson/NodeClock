@@ -8,7 +8,7 @@ const pool = new Pool({
     port: '5432'
 });
 
-//retorna todos os dados do BD
+//retorna todos os dados da Data Base
 const getClock = async (req, res) => {
     const response = await pool.query('SELECT * FROM clock ORDER BY id ASC');
     res.status(200).json(response.rows);
@@ -30,10 +30,7 @@ const getClockByH = async (req, res) => {
 
         if(hour >= 0 & hour <= 11){
             const response = await pool.query('INSERT INTO public.clock (hour, minute, angle, date) VALUES ($1, $2, $3, $4)', [hour, minute, angle, date]);
-            res.json({
-                message: 'Clock cadastrado com sucesso',
-                clock: {hour, minute, angle, date}
-            })
+            res.json({angle})
         } else{
             res.json('O valor de horas deve está entre 0 e 11')
         };
@@ -58,10 +55,7 @@ const getClockByHM = async (req, res) => {
         if(hour >= 0 & hour <= 11){
             if(minute >= 0 & minute <=59){
                 const insert = await pool.query('INSERT INTO public.clock (hour, minute, angle, date) VALUES ($1, $2, $3, $4)', [hour, minute, angle, date]);
-            res.json({
-                message: 'Clock cadastrado com sucesso',
-                clock: {hour, minute, angle, date}
-            })
+            res.json({angle})
             } else{
                 res.json('O número de minutos deve estar entre 0 e 59')
             };
