@@ -9,13 +9,13 @@ const pool = new Pool({
   port: "5432",
 });
 
-//retorna todos os dados da Data Base
+//Retorna todos os clocks
 const getClock = async (req, res) => {
   const response = await pool.query("SELECT * FROM clock ORDER BY id ASC");
   res.status(200).json(response.rows);
 };
 
-//Retorna dados buscados somente por horas
+////Retorna o ângulo baseado na hora e se não existir ele criará
 const getClockByH = async (req, res) => {
   const hour = parseInt(req.params.hour);
   const minute = 0;
@@ -33,7 +33,7 @@ const getClockByH = async (req, res) => {
   }
 };
 
-//Retorna dados buscados por horas e minutos
+//Retorna o ângulo baseado na hora e minuto e caso não exista ele criará
 const getClockByHM = async (req, res) => {
   const hour = parseInt(req.params.hour);
   const minute = parseInt(req.params.minute);
@@ -51,15 +51,8 @@ const getClockByHM = async (req, res) => {
   }
 };
 
-const deleteClock = async (req, res) => {
-  const id = parseInt(req.params.id);
-  await pool.query("DELETE FROM clock where id = $1", [id]);
-  res.json(`Clock ${id} Deletado com Sucesso`);
-};
-
 module.exports = {
   getClock,
   getClockByH,
   getClockByHM,
-  deleteClock,
 };
