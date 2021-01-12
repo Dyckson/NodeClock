@@ -9,12 +9,21 @@ const pool = new Pool({
 });
 
 const CadastrarClock = async (hour, minute) => {
-  let date = new Date();
-  let angle = (11 * minute - 60 * hour) / 2;
-  angle = Math.round(Math.abs(angle));
+  //Resgata a data e hora atual
+  let date = new Date(); 
+
+  //Calcula o ângulo 
+  let angle = (11 * minute - 60 * hour) / 2; 
+
+  //Arredonda o ângulo
+  angle = Math.round(Math.abs(angle)); 
+
+  //Calcula o menor ângulo
   if (angle > 180) {
     angle = 360 - angle;
   }
+
+  //Validador de hora e minuto e se estiver tudo ok ele grava os dados
   if ((hour >= 0) & (hour <= 11)) {
     if ((minute >= 0) & (minute <= 59)) {
       const response = await pool.query(
