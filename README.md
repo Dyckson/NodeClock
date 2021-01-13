@@ -14,7 +14,7 @@ Com o pgAdmin4 você pode criar um server com a Connection
 
 Após a criação do server, crie um banco de dados chamado **dbrest**, em seguida use o **restore** para recuperar os dados e a tabela **clock** através do arquivo **backup_database** presente no diretório **database** da aplicação.
 
-#### Lembre-se mude password em index-controller e index-service para o seu Password Mister
+## Lembre-se: Mude o campo password em index-controller e index-service para o seu Password Mister
 
 ## Instalação
 *npm install*
