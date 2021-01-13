@@ -3,7 +3,7 @@ const { Pool } = require("pg");
 const pool = new Pool({
   user: "postgres",
   host: "localhost",
-  password: "test123",
+  password: "test123", //Mude para o seu password mister
   database: "dbrest",
   port: "5432",
 });
